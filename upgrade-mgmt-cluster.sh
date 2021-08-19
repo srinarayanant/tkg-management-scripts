@@ -1,14 +1,14 @@
 #!/usr/bin/env bash
+
 #==============================================================================#
 #  FILE : upgrade-mgmt-cluster.sh                                              #
 #  USAGE: ./upgrade-mgmt-cluster.sh                                            #
-#  DESCRIPTION : Script to upgrade TKG management cluste to version 1.3.1      #
+#  DESCRIPTION : Script to upgrade TKG management cluster to version 1.3.1     #
 #  Environment variables to be preset :                                        #
 #    1. TKG_MGMT_CLUSTER_KUBECONFIG_PATH: Management cluster context file path #
 #    2. TKG_MGMT_CLUSTER_CONTEXT: Management cluster context name              #
 #    3. TKG_MGMT_CLUSTER_NAME : Management cluster name                        #
 #==============================================================================#
-
 
 #-- Enable/Disable debug
 #set -x
