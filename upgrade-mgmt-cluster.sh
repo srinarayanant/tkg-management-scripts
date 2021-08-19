@@ -26,11 +26,11 @@ rm -rf ~/.tanzu/tkg/bom
 export TKG_BOM_CUSTOM_IMAGE_TAG="v1.3.1-patch1"
 tanzu management-cluster create || ls
 
-echo "Current management cluster status"
+echo "***  Display management cluster status ***" 
 tanzu management-cluster get
 
-echo "Upgrading management cluster : ${TKG_MGMT_CLUSTER_NAME} "
+echo "***  Upgrading management cluster : ${TKG_MGMT_CLUSTER_NAME} ***" 
 tanzu management-cluster upgrade --yes
 
-echo "Management cluster status post upgrade"
+echo "***  Display management cluster status post upgrade ***" 
 tanzu management-cluster get
