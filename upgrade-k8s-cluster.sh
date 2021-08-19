@@ -40,7 +40,7 @@ tanzu cluster kubeconfig get ${K8S_CLUSTER_NAME} -n ${K8S_CLUSTER_NAMESPACE} --a
 echo "***  Switch to kubernetes cluster context  ***"
 kubectl config use-context ${K8S_CLUSTER_NAME}-admin@${K8S_CLUSTER_NAME}
 
-echo "***  Delete kapp controller and associated constructs ***"
+echo "***  Delete kapp controller and associated entities***"
 kubectl delete deployment kapp-controller -n kapp-controller
 kubectl delete clusterrole kapp-controller-cluster-role
 kubectl delete clusterrolebinding kapp-controller-cluster-role-binding
