@@ -31,17 +31,23 @@ rm -rf ~/.tanzu/tkg/bom
 export TKG_BOM_CUSTOM_IMAGE_TAG="v1.3.1-patch1"
 tanzu management-cluster create || ls
 
-echo "***  Get kubeconfig for workload cluster  ***"
+echo "***  Display Kubernetes cluster details ***" 
+tanzu cluster list
+
+echo "***  Import kubeconfig for workload cluster into kube context ***"
 tanzu cluster kubeconfig get ${K8S_CLUSTER_NAME} -n ${K8S_CLUSTER_NAMESPACE} --admin
 
-echo "***  Get kubeconfig for workload cluster  ***"
+echo "***  Switch to kubernetes cluster context  ***"
 kubectl config use-context ${K8S_CLUSTER_NAME}-admin@${K8S_CLUSTER_NAME}
 
+echo "***  Delete kapp controller and associated constructs ***"
 kubectl delete deployment kapp-controller -n kapp-controller
 kubectl delete clusterrole kapp-controller-cluster-role
 kubectl delete clusterrolebinding kapp-controller-cluster-role-binding
 kubectl delete serviceaccount kapp-controller-sa -n kapp-controller
 
-tanzu kubernetes-release get
-
+echo "***  Upgrade Kubernetes cluster : ${K8S_CLUSTER_NAME} ***" 
 tanzu cluster upgrade ${K8S_CLUSTER_NAME} --namespace ${K8S_CLUSTER_NAMESPACE} --yes
+
+echo "***  Display Kubernetes cluster details post upgrade ***" 
+tanzu cluster list
