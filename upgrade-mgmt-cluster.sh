@@ -29,6 +29,12 @@ tanzu management-cluster create || ls
 echo "***  Display management cluster status ***" 
 tanzu management-cluster get
 
+echo "***  Delete kapp controller and associated constructs ***"
+kubectl delete deployment kapp-controller -n kapp-controller
+kubectl delete clusterrole kapp-controller-cluster-role
+kubectl delete clusterrolebinding kapp-controller-cluster-role-binding
+kubectl delete serviceaccount kapp-controller-sa -n kapp-controller
+
 echo "***  Upgrading management cluster : ${TKG_MGMT_CLUSTER_NAME} ***" 
 tanzu management-cluster upgrade --yes
 
